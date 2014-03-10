@@ -1,0 +1,14 @@
+---
+benchmark_cluster_group: riak_cluster
+benchmark_suite_concurrent: 50
+benchmark_suite_duration: 30
+benchmark_suite_key_count: 1000000
+benchmark_suite_key_start_int: 0
+benchmark_suite_keygen: partitioned_sequential_int
+benchmark_suite_operations: get
+benchmark_suite_rate: max
+benchmark_suite_set: test
+benchmark_suite_value_bs: 1048576
+riakcs_creds_path: /tmp/riakcs_creds.yml
+s3client_host_base: aws.amazon.com
+s3client_proxy_port: 8080

@@ -1,0 +1,8 @@
+- name: setup the basho proserv repo
+  copy: src=basho_proserv.repo dest=/etc/yum.repos.d/
+
+- name: install rpms
+  yum: name={{ item }} state=present
+  with_items:
+  - bashobench
+  - python-pip

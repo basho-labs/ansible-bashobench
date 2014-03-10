@@ -1,0 +1,33 @@
+- include: RedHat.yml
+  when: ansible_os_family  == "RedHat"
+
+# Ubuntu specific package installations
+- include: Debian.yml
+  when: ansible_os_family  == "Debian"
+
+- name: check for riakcs creds
+  local_action: stat path={{ riakcs_creds_path }}
+  register: p
+  sudo: no
+
+- name: including vars
+  include_vars: "{{ riakcs_creds_path }}"
+  when: p.stat.exists is defined and p.stat.exists == true
+
+- name: setup erlang_template helper
+  copy: src=config_to_json dest=/usr/local/bin mode=755
+
+- name: setup bb results dir
+  file: path=/var/lib/bashobench mode=777 state=directory
+
+- name: setup bb test config dir
+  file: path=/etc/bashobench mode=755 state=directory
+
+- template: src={{ item }} dest=/etc/bashobench/
+  with_items:
+  - benchmark_riak.config
+  - benchmark_riakcs.config
+
+- template: src={{ item }} dest=/etc/bashobench/
+  with_fileglob:
+  - "{{ bashobench_extra_tests }}/*.config"
