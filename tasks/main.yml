@@ -23,11 +23,13 @@
 - name: setup bb test config dir
   file: path=/etc/bashobench mode=755 state=directory
 
-- template: src={{ item }} dest=/etc/bashobench/
+- name: copying example benchmark configurations
+  template: src={{ item }} dest=/etc/bashobench/
   with_items:
   - benchmark_riak.config
   - benchmark_riakcs.config
 
-- template: src={{ item }} dest=/etc/bashobench/
+- name: copying custom configurations
+  template: src={{ item }} dest=/etc/bashobench/
   with_fileglob:
   - "{{ bashobench_extra_tests }}/*.config"

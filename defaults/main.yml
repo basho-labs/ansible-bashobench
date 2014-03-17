@@ -1,14 +1,16 @@
 ---
-benchmark_cluster_group: riak_cluster
-benchmark_suite_concurrent: 50
-benchmark_suite_duration: 30
-benchmark_suite_key_count: 1000000
-benchmark_suite_key_start_int: 0
-benchmark_suite_keygen: partitioned_sequential_int
-benchmark_suite_operations: get
-benchmark_suite_rate: max
+bashobench_cluster_group: riak_cluster
+bashobench_concurrent: 4
+bashobench_duration: 30
+bashobench_key_count: 1000000
+bashobench_key_start_int: 0
+bashobench_keygen: partitioned_sequential_int
+bashobench_operations: get
+bashobench_rate: max
+bashobench_test: /etc/bashobench/benchmark_riak.config
+bashobench_results_dir: /var/lib/bashobench
+bashobench_value_bs: 1048576
 benchmark_suite_set: test
-benchmark_suite_value_bs: 1048576
 riakcs_creds_path: /tmp/riakcs_creds.yml
-s3client_host_base: aws.amazon.com
+s3client_host_base: s3.amazonaws.com
 s3client_proxy_port: 8080

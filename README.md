@@ -1,36 +1,52 @@
-Role Name
+basho-labs.bashobench
 ========
 
-A brief description of the role goes here.
+Configures basho_bench.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+
+| Name           | Default Value | Description                        |
+| -------------- | ------------- | -----------------------------------|
+| benchmark_cluster_group | riak_cluster | group name of servers to target |
+| bashobench_concurrent | 50 | number of concurrent connections |
+| bashobench_duration | 30 | length of the test |
+| bashobench_key_count | 1000000 | number of keys to write |
+| bashobench_key_start_int | 0 | starting integer to count from |
+| bashobench_keygen | partitioned_sequential_int | key generator to use |
+| bashobench_operations | get | type of operations to use |
+| bashobench_rate | max | rate to use |
+| bashobench_set | test | name of the test suite |
+| bashobench_value_bs | 1048576 | size of Riak CS object to use |
+| riakcs_creds_path | /tmp/riakcs_creds.yml | path to riakcs creds |
+| s3client_host_base | aws.amazon.com | basename to use for benchmark's s3 driver |
+| s3client_proxy_port | 8080 | port number used to connect to s3 service |
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 -------------------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: bashobench
       roles:
-         - { role: username.rolename, x: 42 }
+         - basho-labs.bashobench
 
 License
 -------
 
-BSD
+Apache
 
 Author Information
 ------------------
